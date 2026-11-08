@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101014">
+  <title>ReelStudio — AI Reel Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="ReelStudio home"><span class="brand-mark">R</span><span>reel<span class="brand-light">studio</span></span></a>
+    <div class="account"><span class="status-dot"></span> Workspace <span class="account-name">@messy_noxmere</span></div>
+  </header>
+
+  <main class="workspace">
+    <section class="intro">
+      <p class="eyebrow">YOUR CREATIVE SIDEKICK</p>
+      <h1>Make your next Reel <span>feel like you.</span></h1>
+      <p class="intro-copy">Drop in a clip, pick a direction, and shape a version you love. Your video stays on this device.</p>
+    </section>
+
+    <section class="editor-grid" aria-label="Reel editor">
+      <div class="preview-column">
+        <div class="preview-shell">
+          <div class="preview-top"><span class="live-dot"></span><span id="previewLabel">REEL PREVIEW</span><button id="soundButton" class="icon-button" type="button" aria-label="Toggle preview sound" title="Toggle sound">♪</button></div>
+          <div class="preview-frame" id="previewFrame">
+            <canvas id="reelCanvas" width="720" height="1280" aria-label="Video preview"></canvas>
+            <div class="empty-state" id="emptyState">
+              <div class="upload-icon">↑</div>
+              <strong>Your next Reel starts here</strong>
+              <span>Choose a video to see your edit</span>
+              <label class="upload-button" for="videoInput">Choose a video</label>
+            </div>
+          </div>
+          <div class="preview-foot"><span>9:16 · 1080 × 1920 export</span><span id="durationLabel">00:00</span></div>
+        </div>
+        <div class="privacy-note"><span>🔒</span> Your clips are processed locally in your browser.</div>
+      </div>
+
+      <div class="controls-column">
+        <section class="panel upload-panel">
+          <div class="section-heading"><div><p class="step-label">STEP 01</p><h2>Add your clip</h2></div><span class="small-pill">MP4 · WEBM · MOV</span></div>
+          <label class="drop-zone" id="dropZone" for="videoInput">
+            <span class="drop-icon">＋</span><span class="drop-main" id="fileName">Choose a video or drop it here</span><span class="drop-sub">Your original file is never uploaded</span>
+          </label>
+          <input id="videoInput" type="file" accept="video/*" hidden>
+          <video id="sourceVideo" playsinline preload="metadata" hidden></video>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading"><div><p class="step-label">STEP 02</p><h2>Pick a vibe</h2></div><span class="ai-tag"><span>✦</span> AI edit ideas</span></div>
+          <p class="helper">Choose a starting look. You can change the text and fine-tune it below.</p>
+          <div class="preset-list" id="presetList">
+            <button class="preset-card selected" data-preset="glow" type="button"><span class="preset-swatch glow-swatch">Aa</span><span class="preset-copy"><strong>Golden hour</strong><small>Warm, cinematic · bold title</small></span><span class="check">✓</span></button>
+            <button class="preset-card" data-preset="clean" type="button"><span class="preset-swatch clean-swatch">Aa</span><span class="preset-copy"><strong>Clean cut</strong><small>Natural color · minimal type</small></span><span class="check">✓</span></button>
+            <button class="preset-card" data-preset="pop" type="button"><span class="preset-swatch pop-swatch">Aa</span><span class="preset-copy"><strong>Neon pop</strong><small>Vibrant contrast · creator energy</small></span><span class="check">✓</span></button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading"><div><p class="step-label">STEP 03</p><h2>Make it yours</h2></div></div>
+          <label class="field-label" for="titleInput">On-screen title</label>
+          <input class="text-input" id="titleInput" maxlength="60" value="A little moment worth keeping" placeholder="Add a short title">
+          <label class="field-label second-label" for="captionInput">Supporting line <span>OPTIONAL</span></label>
+          <input class="text-input" id="captionInput" maxlength="90" value="" placeholder="Add a second line or leave it blank">
+          <div class="trim-heading"><span class="field-label">Trim your clip</span><span id="trimReadout" class="trim-readout">00:00 — 00:00</span></div>
+          <div class="trim-controls"><label>Start <input id="startInput" type="number" min="0" step="0.1" value="0" aria-label="Start time in seconds"></label><label>End <input id="endInput" type="number" min="0" step="0.1" value="0" aria-label="End time in seconds"></label></div>
+        </section>
+
+        <div class="export-area">
+          <button id="exportButton" class="export-button" type="button" disabled><span>✦</span> Export my Reel</button>
+          <p id="exportMessage" class="export-message" role="status">Add a video to start editing.</p>
+          <a id="downloadLink" class="download-link" hidden>Download edited Reel</a>
+        </div>
+      </div>
+    </section>
+    <footer>ReelStudio is an independent editing prototype and is not affiliated with Instagram. Review your edit before sharing.</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
